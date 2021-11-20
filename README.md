@@ -1,5 +1,6 @@
-# The default JavaScript Actions quickstart
-To quickly have an environment to make & test JavaScript actions. It uses the basic JavaScript action from [this tutorial](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action). To get started, just follow the instructions the [Usage section](https://github.com/PrLemon/js-action-template-repo/blob/main/README.md#usage).
+# Quickstart: Boilerplate project for GitHub Actions written in JavaScript
+
+To quickly have an environment to make & test JavaScript GitHub actions. It uses the basic JavaScript action from [this tutorial](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action). To get started, just follow the instructions the [Usage section](https://github.com/PrLemon/js-action-template-repo/blob/main/README.md#usage).
 
 💡 If you're using Codespaces, this repo contains a devcontainer file that makes it faster to be able to start using this project. The Codespace is configured to install the Actions libraries and `ncc` to distribute this easily.
 
@@ -27,5 +28,21 @@ ncc build src/index.js --license licenses.txt
 - Commit everything
 - Go to the Actions tab to run this workflow manually
 
-### Examples
-In this Repo - [PrLemon/calculator-action](https://github.com/PrLemon/calculator-action), we have used this template as a base and then gone on to modify the `action.yml` and `src/index.js`; rebuilt it and it now works as a Calculator action instead of our simple Hello World!
+#### Note
+This repository uses a way to call Actions from a private repository. Whatever is written in this action can only be used by the repository itself. It cannot be referenced from elsewhere.
+
+```
+- name: Hello world action step
+  uses: ./ # Uses an action in the root directory
+  with:
+    who-to-greet: 'Mona the Octocat'
+```
+
+Converting the repository to public will allow it to be referenced across multiple repositories.
+
+```
+- name: Hello world action step
+  uses: <owner-org>/<repo-created-from-this-template>@<tag>
+  with:
+    who-to-greet: 'Mona the Octocat'
+```
